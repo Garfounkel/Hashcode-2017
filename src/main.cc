@@ -6,7 +6,6 @@
 #include "caches.hh"
 #include "endpoints.hh"
 #include "sort_video.hh"
-#include "output.hh"
 
 void dump_list(std::vector<Video> l)
 {
@@ -62,6 +61,11 @@ int main()
 
    std::vector<Endpoint> list_endp;
    std::vector<Cache> list_cache;
+
+   for (int i = 0; i < nbr_caches; i++)
+      list_cache.push_back(Cache(i, nbr_cache_capacity));
+
+
    for (int i = 0; i < nbr_endpoints; i++)
    {
       in >> tmp;
@@ -76,7 +80,6 @@ int main()
          int id = atoi(tmp.c_str());
          in >> tmp;
          int ping_cache = atoi(tmp.c_str());
-         list_cache.push_back(Cache(id, nbr_cache_capacity));
          ep.add_cache(id, ping_cache);
          std::getline(in, tmp);
       }
@@ -97,8 +100,6 @@ int main()
    }
 
    std::vector<Cache> output;
-   global_sort(list_request, list_endp, list_vid, output);
-   insert_caches(output, list_endp);
    std::ofstream outfile("output.txt");
    write_output(output, outfile);
 }
