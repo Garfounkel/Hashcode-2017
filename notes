@@ -1,3 +1,5 @@
 First algo:
       - Remove endpoints not connected to any cache
       - Remove endpoints with a cache latency higher than the datacenter latency
+      - Remove videos with a size higher than cashes's max size.
+      - Remove videos without a request
