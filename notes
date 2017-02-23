@@ -1,0 +1,3 @@
+First algo:
+      - Remove endpoints not connected to any cache
+      - Remove endpoints with a cache latency higher than the datacenter latency
