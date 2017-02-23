@@ -6,6 +6,18 @@
 #include "caches.hh"
 #include "endpoints.hh"
 
+
+
+void dump_list(std::vector<Video> l)
+{
+   for (auto i = l.begin(); i != l.end(); i++)
+   {
+      std::cout << "Video n°" << i->id << ": size = "
+                << i->size << std::endl;
+   }
+}
+
+
 int main()
 {
    std::ifstream in;
@@ -25,6 +37,7 @@ int main()
    int nbr_cache_capacity = atoi(tmp.c_str());
    std::getline(in, tmp);
    std::vector<Video> list_vid;
+
    for (int i = 0; i < nbr_video; i++)
    {
       in >> tmp;
@@ -32,6 +45,7 @@ int main()
       list_vid.push_back(Video(i, size_vid));
    }
    std::getline(in, tmp);
+   dump_list(list_vid);
 
    std::vector<Endpoint> list_endp;
    for (int i = 0; i < nbr_endpoints; i++)
