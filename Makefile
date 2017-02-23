@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++14 -Wall -Wextra -pedantic
 CFLAGS += -I src
 VPATH = src include tests
 
-SRC = src/maketest.cc
+SRC = src/main.cc
 
 BIN = hash.out
 

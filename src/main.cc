@@ -1,6 +1,11 @@
 #include <fstream>
 #include <vector>
 
+#include "videos.hh"
+#include "requests.hh"
+#include "caches.hh"
+#include "endpoints.hh"
+
 int main()
 {
    std::ifstream in;
