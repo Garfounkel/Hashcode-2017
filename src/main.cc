@@ -6,8 +6,6 @@
 #include "caches.hh"
 #include "endpoints.hh"
 
-
-
 void dump_list(std::vector<Video> l)
 {
    for (auto i = l.begin(); i != l.end(); i++)
@@ -17,6 +15,19 @@ void dump_list(std::vector<Video> l)
    }
 }
 
+void write_output(std::vector<Cache> caches, std::ofstream ostr)
+{
+  ostr << caches.size() << '\n';
+  for (auto cache: caches)
+  {
+    ostr << cache.id;
+    for (auto video: cache.out)
+    {
+      ostr << ' ' << video.id;
+    }
+    ostr << '\n';
+  }
+}
 
 int main()
 {
@@ -81,4 +92,8 @@ int main()
       std::getline(in, tmp);
    }
 
+
+
+   std::ofstream outfile("output.txt");
+   write_output(output, outfile);
 }
