@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 class Cache
 {
 public:
@@ -10,7 +12,8 @@ public:
       this->capacity = capacity;
     }
 
-   int id;
-   int capacity;
-   int latency;
+  int capacity;
+  int id;
+  int latency;
+  std::vector<Video> out;
 };
