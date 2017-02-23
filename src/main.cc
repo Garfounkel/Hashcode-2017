@@ -15,7 +15,7 @@ void dump_list(std::vector<Video> l)
    }
 }
 
-void write_output(std::vector<Cache> caches, std::ofstream ostr)
+void write_output(std::vector<Cache> caches, std::ofstream& ostr)
 {
   ostr << caches.size() << '\n';
   for (auto cache: caches)
@@ -92,7 +92,7 @@ int main()
       std::getline(in, tmp);
    }
 
-
+   std::vector<Cache> output;
 
    std::ofstream outfile("output.txt");
    write_output(output, outfile);
