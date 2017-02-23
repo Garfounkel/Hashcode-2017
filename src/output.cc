@@ -1,27 +1,34 @@
 #include <vector>
 #include <algorithm>
 #include "caches.hh"
-
+#include "endpoints.hh"
+#include "requests.hh"
+#include "sort_video.hh"
 
 bool operator== (const Endpoint& a, const Endpoint& b)
 {
-  return a.id_ == b.id_;
+  return a.id == b.id;
 }
 
-bool compare_latency(Endpoint& a, Endpoint& b)
+bool operator== (const Endpoint& a, const int b)
+{
+  return a.id == b;
+}
+
+bool compare_latency(Cache& a, Cache& b)
 {
   return a.latency < b.latency;
 }
 
 void sort_latency_rec(Endpoint a)
 {
-  std::sort(a.begin(), a.end(), compare_latency);
+  std::sort(a.caches.begin(), a.caches.end(), compare_latency);
 }
 
 
 void sort_latency(std::vector<Endpoint>& ep)
 {
-  for (auto it = rq.begin(); it != rq.end(); ++it)
+  for (auto it = ep.begin(); it != ep.end(); ++it)
   {
     sort_latency_rec(*it);
   }
@@ -37,16 +44,16 @@ void global_sort(std::vector<Request>& req, std::vector<Endpoint>& ep, std::vect
   {
     int j = 0;
     bool b = true;
-    auto i = std::find(ep.begin(), ep.end(), *it.endpoint_id);
+    auto i = std::find(ep.begin(), ep.end(), (*it).endpoint_id);
 
     while (b)
     {
-      if ((i.caches.begin() + j).capacity > v[*it.video_id].size)
+      if ((i->caches.begin() + j)->capacity > v[it->video_id].size)
         j++;
       else
       {
-        (i.caches.begin() + j).capacity -=  v[*it.video_id].size;
-        (i.caches.begin() + j).out.push_back(v[*it.video_id]);
+        (i->caches.begin() + j)->capacity -=  v[it->video_id].size;
+        (i->caches.begin() + j)->out.push_back(v[it->video_id]);
         b = false;
       }
     }
