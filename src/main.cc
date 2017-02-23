@@ -96,6 +96,7 @@ int main()
 
    std::vector<Cache> output;
    global_sort(list_request, list_endp, list_vid, output);
+   insert_caches(output, list_endp);
    std::ofstream outfile("output.txt");
    write_output(output, outfile);
 }

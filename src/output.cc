@@ -70,6 +70,7 @@ void insert_caches(std::vector<Cache>& out, std::vector<Endpoint>& eps)
       if (done[cache.id] == -1)
       {
         out.push_back(cache);
+        done[cache.id] = 1;
       }
     }
   }
