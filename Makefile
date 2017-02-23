@@ -3,7 +3,8 @@ CXXFLAGS = -std=c++14 -Wall -Wextra -pedantic
 CFLAGS += -I src
 VPATH = src include tests
 
-SRC = src/main.cc
+SRC = src/main.cc \
+	src/sort_video.cc
 
 BIN = hash.out
 

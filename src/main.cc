@@ -5,6 +5,7 @@
 #include "requests.hh"
 #include "caches.hh"
 #include "endpoints.hh"
+#include "sort_video.hh"
 
 void dump_list(std::vector<Video> l)
 {
@@ -93,7 +94,6 @@ int main()
    }
 
    std::vector<Cache> output;
-
    std::ofstream outfile("output.txt");
    write_output(output, outfile);
 }
