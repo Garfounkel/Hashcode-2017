@@ -34,7 +34,7 @@ void sort_latency(std::vector<Endpoint>& ep)
   }
 }
 
-void global_sort(std::vector<Request>& req, std::vector<Endpoint>& ep, std::vector<Video>& v, std::vector<Cache>& ch)
+void global_sort(std::vector<Request>& req, std::vector<Endpoint>& ep, std::vector<Video>& v)
 {
   sort_request(req);
   sort_latency(ep);
@@ -55,6 +55,21 @@ void global_sort(std::vector<Request>& req, std::vector<Endpoint>& ep, std::vect
         (i->caches.begin() + j)->capacity -=  v[it->video_id].size;
         (i->caches.begin() + j)->out.push_back(v[it->video_id]);
         b = false;
+      }
+    }
+  }
+}
+
+void insert_caches(std::vector<Cache>& out, std::vector<Endpoint>& eps)
+{
+  int done[1000] = { -1 };
+  for (auto ep: eps)
+  {
+    for (auto cache: ep.caches)
+    {
+      if (done[cache.id] == -1)
+      {
+        out.push_back(cache);
       }
     }
   }
