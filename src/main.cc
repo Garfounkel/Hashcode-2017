@@ -61,6 +61,7 @@ int main()
    dump_list(list_vid);
 
    std::vector<Endpoint> list_endp;
+   std::vector<Cache> list_cache;
    for (int i = 0; i < nbr_endpoints; i++)
    {
       in >> tmp;
@@ -75,7 +76,8 @@ int main()
          int id = atoi(tmp.c_str());
          in >> tmp;
          int ping_cache = atoi(tmp.c_str());
-         ep.add_cache(Cache(id, ping_cache, nbr_cache_capacity));
+         list_cache.push_back(Cache(id, nbr_cache_capacity));
+         ep.add_cache(id, ping_cache);
          std::getline(in, tmp);
       }
       list_endp.push_back(ep);

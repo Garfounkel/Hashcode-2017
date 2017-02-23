@@ -6,10 +6,9 @@
 class Cache
 {
   public:
-    Cache(int id, int latency, int capacity)
+    Cache(int id, int capacity)
     {
       this->id = id;
-      this->latency = latency;
       this->capacity = capacity;
     }
 

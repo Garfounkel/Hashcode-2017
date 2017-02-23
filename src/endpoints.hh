@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <iostream>
+#include <tuple>
 #include "caches.hh"
 
 class Endpoint
@@ -13,12 +14,12 @@ public:
       this->id = id;
     }
 
-  void add_cache(Cache cache)
+   void add_cache(int id, int ping)
     {
-      caches.push_back(cache);
+       caches.push_back(std::pair<int,int>(id,ping));
     }
 
   int id;
-  std::vector<Cache> caches;
+   std::vector<std::pair<int, int>> caches;
   int datacenter_latency; // 2 <= datacenter_latency <= 4000
 };
