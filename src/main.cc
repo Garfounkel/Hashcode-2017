@@ -20,6 +20,7 @@ int main()
    int nbr_request = atoi(tmp.c_str());
    in >> tmp;
    int nbr_caches = atoi(tmp.c_str());
+   nbr_caches = nbr_caches;
    in >> tmp;
    int nbr_cache_capacity = atoi(tmp.c_str());
    std::getline(in, tmp);
@@ -47,7 +48,7 @@ int main()
          int id = atoi(tmp.c_str());
          in >> tmp;
          int ping_cache = atoi(tmp.c_str());
-         ep.add_cache(id, ping_cache);
+         ep.add_cache(Cache(id, ping_cache, nbr_cache_capacity));
          std::getline(in, tmp);
       }
       list_endp.push_back(ep);
@@ -62,7 +63,7 @@ int main()
       int id_endp = atoi(tmp.c_str());
       in >> tmp;
       int req_vids = atoi(tmp.c_str());
-      list_request.push_back(Request(i, id_vid, id_endp, req_vids));
+      list_request.push_back(Request(id_vid, id_endp, req_vids));
       std::getline(in, tmp);
    }
 
